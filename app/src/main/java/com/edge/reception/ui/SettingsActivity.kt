@@ -27,6 +27,7 @@ class SettingsActivity : AppCompatActivity() {
     )
 
     private val languages = arrayOf(
+        "Auto-Detect (Multilingual)",
         "English",
         "Hindi",
         "Telugu",

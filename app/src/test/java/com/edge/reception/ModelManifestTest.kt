@@ -15,16 +15,16 @@ class ModelManifestTest {
         val content = manifestFile.readText()
         val json = JSONObject(content)
 
-        assertEquals("1.0.0", json.getString("version"))
-        assertTrue("Storage requirement must be positive", json.getInt("storage_required_mb") > 0)
+        assertEquals("4.0.0", json.getString("version"))
+        assertEquals(929, json.getInt("storage_required_mb"))
 
         val models = json.getJSONArray("models")
-        assertTrue("Must include at least 3 model entries (VAD, ASR, LLM)", models.length() >= 3)
+        assertEquals("Must include exactly 4 models (VAD, ASR, LLM, TTS)", 4, models.length())
 
         for (i in 0 until models.length()) {
             val m = models.getJSONObject(i)
             assertTrue("Filename must not be empty", m.getString("filename").isNotEmpty())
-            assertTrue("SHA256 must be 64 chars", m.getString("sha256").length == 64)
+            assertTrue("SHA256 must be 64 hex chars", m.getString("sha256").length == 64)
             assertTrue("License must be specified", m.getString("license").isNotEmpty())
             assertTrue("Must specify supported languages", m.getJSONArray("languages").length() > 0)
         }

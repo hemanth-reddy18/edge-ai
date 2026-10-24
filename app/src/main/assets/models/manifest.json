@@ -1,7 +1,7 @@
 {
-  "version": "1.0.0",
+  "version": "4.0.0",
   "published_date": "2026-10-25",
-  "storage_required_mb": 510,
+  "storage_required_mb": 929,
   "models": [
     {
       "id": "silero_vad",
@@ -9,8 +9,8 @@
       "component": "VAD",
       "filename": "silero_vad.onnx",
       "url": "https://github.com/snakers4/silero-vad/raw/master/src/silero_vad/data/silero_vad.onnx",
-      "size_bytes": 1435848,
-      "sha256": "4b6e8fa1604a390b1ad0da3c8fa176df78c66eef4c9955faefec9fe6eb3884b2",
+      "size_bytes": 2327524,
+      "sha256": "1a153a22f4509e292a94e67d6f9b85e8deb25b4988682b7e174c65279d8788e3",
       "license": "MIT",
       "attribution": "Silero Team (snakers4/silero-vad)",
       "languages": ["Universal Voice Activity Detection"]
@@ -21,11 +21,11 @@
       "component": "ASR",
       "filename": "ggml-base-q5_1.bin",
       "url": "https://huggingface.co/ggerganov/whisper.cpp/resolve/main/ggml-base-q5_1.bin",
-      "size_bytes": 59938592,
-      "sha256": "4c45a165b4c483aeaa6ee6ee6ebaa3e3c66ebaa24eebad31efec9fe6eb3884b2",
+      "size_bytes": 59707625,
+      "sha256": "422f1ae452ade6f30a004d7e5c6a43195e4433bc370bf23fac9cc591f01a8898",
       "license": "MIT",
       "attribution": "Georgi Gerganov / whisper.cpp",
-      "languages": ["English", "Hindi", "Telugu", "Tamil", "Malayalam"]
+      "languages": ["English", "Hindi", "Telugu", "Tamil", "Malayalam", "Code-Switching"]
     },
     {
       "id": "qwen3_0_6b_q4",
@@ -33,11 +33,23 @@
       "component": "LLM",
       "filename": "Qwen3-0.6B-Q4_0.gguf",
       "url": "https://huggingface.co/ggml-org/Qwen3-0.6B-GGUF/resolve/main/Qwen3-0.6B-Q4_0.gguf",
-      "size_bytes": 450000000,
-      "sha256": "8a32bb5e8e3d09a25b12851ee76bfaefad87e2b109315d1cbdf8029d91f4a4bf",
+      "size_bytes": 428970080,
+      "sha256": "da2572f16c06133561ce56accaa822216f2391ef4d37fba427801cd6736417d4",
       "license": "Apache-2.0",
       "attribution": "Qwen Team (Alibaba Cloud) & llama.cpp",
       "languages": ["English", "Hindi", "Telugu", "Tamil", "Malayalam", "Code-Switching"]
+    },
+    {
+      "id": "pocket_tts_multilingual",
+      "name": "Pocket TTS Multilingual Fine-Tune",
+      "component": "TTS",
+      "filename": "model.safetensors",
+      "url": "https://huggingface.co/Thanushttk/pocket-tts-multilingual/resolve/main/model.safetensors",
+      "size_bytes": 438033312,
+      "sha256": "0b30651a2efc229386076c85e241ded3059d9257652b86572a1a16e7550be09f",
+      "license": "CC BY 4.0",
+      "attribution": "Thanushttk & Kyutai Labs (pocket-tts)",
+      "languages": ["English", "Hindi", "Telugu", "Tamil", "Malayalam", "Marathi", "Kannada"]
     }
   ]
 }

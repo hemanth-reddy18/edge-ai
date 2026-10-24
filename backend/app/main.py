@@ -68,19 +68,13 @@ def init_db():
         timestamp INTEGER
     )
     """)
-    # Seed default client if empty
+    # Seed default client if empty (without fake calls)
     c.execute("SELECT COUNT(*) FROM clients")
     if c.fetchone()[0] == 0:
         c.execute("""
         INSERT INTO clients (id, business_name, business_type, device_serial, status, kill_switch, lease_duration_sec, prompt_version, created_at)
         VALUES ('client_s22_demo', 'Edge Realty & Services', 'Real Estate', 'ce09171998abec250b7e', 'active', 0, 86400, 'v1.0', ?)
         """, (int(time.time()),))
-        c.execute("""
-        INSERT INTO calls (call_id, client_id, caller_id, duration_seconds, language, outcome, summary, timestamp)
-        VALUES 
-        ('call_001', 'client_s22_demo', '+91 98480 22338', 62, 'Telugu (Code-Mixed)', 'LEAD', 'Requested 3BHK duplex details in Jubilee Hills with parking. Booked 4 PM visit.', ?),
-        ('call_002', 'client_s22_demo', '+91 99001 54321', 24, 'Hindi', 'FAIL', 'Wrong number inquiry looking for bank passbook branch.', ?)
-        """, (int(time.time()) - 900, int(time.time()) - 3600))
     conn.commit()
     conn.close()
 

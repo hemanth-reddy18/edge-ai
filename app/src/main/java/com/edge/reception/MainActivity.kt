@@ -41,7 +41,8 @@ class MainActivity : AppCompatActivity() {
 
         lifecycleScope.launch {
             repository.initializeDefaultsIfNeeded()
-            repository.seedDemoCallsIfEmpty()
+            // Clean up any demo calls to ensure only real calls exist
+            db.callDao().deleteDemoCalls()
         }
     }
 
