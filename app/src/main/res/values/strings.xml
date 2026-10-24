@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Edge</string>
+    <string name="title_receptionist">Edge AI Receptionist</string>
+    <string name="subtitle_status">On-Device AI Receptionist</string>
+    <string name="system_status_title">System Environment Status</string>
+    <string name="status_runtime">Runtime: Android Native (SDK 34)</string>
+    <string name="status_architecture">Architecture: Ready for On-Device Inference</string>
+    <string name="status_ready">Milestone 1 Verified: Build &amp; Scaffold Operational</string>
+</resources>
