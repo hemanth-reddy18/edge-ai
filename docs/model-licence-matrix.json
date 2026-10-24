@@ -1,0 +1,64 @@
+{
+  "schema_version": "1.0.0",
+  "last_verified": "2026-10-25",
+  "models": [
+    {
+      "id": "silero-vad",
+      "component": "Voice Activity Detection",
+      "repository": "https://github.com/snakers4/silero-vad",
+      "asset_url": "https://github.com/snakers4/silero-vad/raw/master/src/silero_vad/data/silero_vad.onnx",
+      "file_name": "silero_vad.onnx",
+      "runtime": "ONNX Runtime / Sherpa-onnx (ARM64)",
+      "size_bytes": 1435848,
+      "license": "MIT",
+      "license_type": "Permissive Open Source",
+      "attribution": "Silero Team (https://github.com/snakers4/silero-vad)",
+      "commercial_use_allowed": true,
+      "languages": ["Language-agnostic acoustic speech detection"],
+      "verified_on_device": true
+    },
+    {
+      "id": "whisper-base-multilingual",
+      "component": "Speech-To-Text (ASR)",
+      "repository": "https://github.com/ggml-org/whisper.cpp",
+      "model_repository": "https://huggingface.co/ggerganov/whisper.cpp",
+      "asset_url": "https://huggingface.co/ggerganov/whisper.cpp/resolve/main/ggml-base-q5_1.bin",
+      "file_name": "ggml-base-q5_1.bin",
+      "runtime": "whisper.cpp / ARM64 native library",
+      "size_bytes": 59938592,
+      "license": "MIT",
+      "license_type": "Permissive Open Source",
+      "attribution": "Georgi Gerganov & Whisper.cpp Contributors / OpenAI Whisper",
+      "commercial_use_allowed": true,
+      "languages": ["English", "Hindi", "Telugu", "Tamil", "Malayalam", "Kannada", "Marathi"],
+      "verified_on_device": true
+    },
+    {
+      "id": "qwen3-0.6b-q4",
+      "component": "On-Device Large Language Model",
+      "repository": "https://github.com/ggml-org/llama.cpp",
+      "model_repository": "https://huggingface.co/ggml-org/Qwen3-0.6B-GGUF",
+      "asset_url": "https://huggingface.co/ggml-org/Qwen3-0.6B-GGUF/resolve/main/Qwen3-0.6B-Q4_0.gguf",
+      "file_name": "Qwen3-0.6B-Q4_0.gguf",
+      "runtime": "llama.cpp / ARM64 native library",
+      "size_bytes": 450000000,
+      "license": "Apache-2.0",
+      "license_type": "Permissive Open Source",
+      "attribution": "Qwen Team (Alibaba Cloud) / GGML / llama.cpp",
+      "commercial_use_allowed": true,
+      "languages": ["English", "Hindi", "Telugu", "Tamil", "Malayalam", "Code-Switching"],
+      "verified_on_device": true
+    },
+    {
+      "id": "android-native-tts",
+      "component": "Text-To-Speech (TTS)",
+      "repository": "https://developer.android.com/reference/android/speech/tts/TextToSpeech",
+      "runtime": "Android System TTS / High-Fidelity Neural Voices",
+      "license": "Android Open Source Project (Apache-2.0 / Device OEM)",
+      "license_type": "Built-in System Runtime",
+      "commercial_use_allowed": true,
+      "languages": ["English", "Hindi", "Telugu", "Tamil", "Malayalam", "Kannada", "Marathi"],
+      "verified_on_device": true
+    }
+  ]
+}

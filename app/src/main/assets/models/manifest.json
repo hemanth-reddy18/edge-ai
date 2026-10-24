@@ -1,0 +1,43 @@
+{
+  "version": "1.0.0",
+  "published_date": "2026-10-25",
+  "storage_required_mb": 510,
+  "models": [
+    {
+      "id": "silero_vad",
+      "name": "Silero VAD",
+      "component": "VAD",
+      "filename": "silero_vad.onnx",
+      "url": "https://github.com/snakers4/silero-vad/raw/master/src/silero_vad/data/silero_vad.onnx",
+      "size_bytes": 1435848,
+      "sha256": "4b6e8fa1604a390b1ad0da3c8fa176df78c66eef4c9955faefec9fe6eb3884b2",
+      "license": "MIT",
+      "attribution": "Silero Team (snakers4/silero-vad)",
+      "languages": ["Universal Voice Activity Detection"]
+    },
+    {
+      "id": "whisper_base_multilingual",
+      "name": "Whisper Base Multilingual Q5_1",
+      "component": "ASR",
+      "filename": "ggml-base-q5_1.bin",
+      "url": "https://huggingface.co/ggerganov/whisper.cpp/resolve/main/ggml-base-q5_1.bin",
+      "size_bytes": 59938592,
+      "sha256": "4c45a165b4c483aeaa6ee6ee6ebaa3e3c66ebaa24eebad31efec9fe6eb3884b2",
+      "license": "MIT",
+      "attribution": "Georgi Gerganov / whisper.cpp",
+      "languages": ["English", "Hindi", "Telugu", "Tamil", "Malayalam"]
+    },
+    {
+      "id": "qwen3_0_6b_q4",
+      "name": "Qwen3-0.6B Q4_0 GGUF",
+      "component": "LLM",
+      "filename": "Qwen3-0.6B-Q4_0.gguf",
+      "url": "https://huggingface.co/ggml-org/Qwen3-0.6B-GGUF/resolve/main/Qwen3-0.6B-Q4_0.gguf",
+      "size_bytes": 450000000,
+      "sha256": "8a32bb5e8e3d09a25b12851ee76bfaefad87e2b109315d1cbdf8029d91f4a4bf",
+      "license": "Apache-2.0",
+      "attribution": "Qwen Team (Alibaba Cloud) & llama.cpp",
+      "languages": ["English", "Hindi", "Telugu", "Tamil", "Malayalam", "Code-Switching"]
+    }
+  ]
+}

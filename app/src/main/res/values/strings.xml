@@ -1,9 +1,42 @@
 <resources>
     <string name="app_name">Edge</string>
-    <string name="title_receptionist">Edge AI Receptionist</string>
-    <string name="subtitle_status">On-Device AI Receptionist</string>
-    <string name="system_status_title">System Environment Status</string>
-    <string name="status_runtime">Runtime: Android Native (SDK 34)</string>
-    <string name="status_architecture">Architecture: Ready for On-Device Inference</string>
-    <string name="status_ready">Milestone 1 Verified: Build &amp; Scaffold Operational</string>
+    <string name="tagline">On-Device AI Receptionist</string>
+
+    <string name="title_auto_answer">Auto-Answer</string>
+    <string name="desc_auto_answer_active">Answering after 3s delay</string>
+    <string name="desc_auto_answer_inactive">Incoming calls ring normally</string>
+
+    <string name="stat_total">Total</string>
+    <string name="stat_leads">Leads</string>
+    <string name="stat_failed">Failed</string>
+    <string name="stat_missed">Missed</string>
+
+    <string name="filter_all">All</string>
+    <string name="filter_leads">Leads</string>
+    <string name="filter_failed">Failed</string>
+
+    <string name="label_lead">LEAD</string>
+    <string name="label_fail">FAIL</string>
+    <string name="label_missed">MISSED</string>
+
+    <string name="status_active">Active Lease</string>
+    <string name="status_offline">Offline Mode</string>
+    <string name="status_expired">Lease Expired</string>
+
+    <string name="action_settings">Settings</string>
+    <string name="action_report_issue">Report Issue</string>
+    <string name="action_save">Save Changes</string>
+    <string name="action_notices">Open Source Notices</string>
+
+    <string name="title_call_details">Call Details</string>
+    <string name="title_transcript">Bilingual Transcript</string>
+    <string name="title_analysis">Executive Summary &amp; Intent</string>
+
+    <string name="title_settings">Settings</string>
+    <string name="business_name_label">Business Display Name</string>
+    <string name="business_type_label">Business Type</string>
+    <string name="default_lang_label">Default Spoken Language</string>
+    <string name="answer_delay_label">Auto-Answer Delay (seconds)</string>
+    <string name="storage_models_label">Local Model Resources</string>
+    <string name="wifi_only_label">Wi-Fi Only Downloads</string>
 </resources>
