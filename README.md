@@ -27,7 +27,15 @@ Edge is an on-device AI receptionist built for Indian businesses. Speech recogni
   ```bash
   ./scripts/dev-dashboard.sh
   ```
-* Access the control plane in your browser at: [http://127.0.0.1:8000/](http://127.0.0.1:8000/)
+* Access the founder control plane in your browser at: [http://127.0.0.1:8000/](http://127.0.0.1:8000/)
+
+### Localhost Voice Lab
+* **Prerequisites:** Node.js 20+
+* **Start Voice Lab:**
+  ```bash
+  ./scripts/start_local_voice_lab.sh
+  ```
+* Open [http://localhost:3000/](http://localhost:3000/) to converse live with the AI using your laptop microphone and speakers with full instant barge-in interruption.
 
 ---
 
