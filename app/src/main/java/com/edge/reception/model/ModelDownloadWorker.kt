@@ -31,6 +31,9 @@ class ModelDownloadWorker(
         }
 
         for (model in manifest.models) {
+            if (model.isOptional) {
+                continue
+            }
             val targetFile = File(modelsDir, model.filename)
             if (targetFile.exists() && targetFile.length() > 0) {
                 continue

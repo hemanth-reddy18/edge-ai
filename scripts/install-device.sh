@@ -3,7 +3,7 @@ set -e
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 PROJECT_ROOT="$(dirname "$SCRIPT_DIR")"
-DEVICE_SERIAL="ce09171998abec250b7e"
+DEVICE_SERIAL="${DEVICE_SERIAL:-10MF86F8HG0001B}"
 APK_PATH="$PROJECT_ROOT/app/build/outputs/apk/debug/app-debug.apk"
 
 cd "$PROJECT_ROOT"

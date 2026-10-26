@@ -16,5 +16,6 @@ data class CallEntity(
     val summary: String,
     val audioRecordingPath: String?,
     val isDemo: Boolean = false,
+    val isTestSession: Boolean = false,
     val synced: Boolean = false
 )

@@ -6,7 +6,7 @@ PROJECT_ROOT="$(dirname "$SCRIPT_DIR")"
 BACKEND_DIR="$PROJECT_ROOT/backend"
 
 echo "=== Starting Edge Founder Dashboard & Control Plane ==="
-DEVICE_SERIAL="ce09171998abec250b7e"
+DEVICE_SERIAL="${DEVICE_SERIAL:-10MF86F8HG0001B}"
 
 # Configure ADB reverse for physical phone
 if command -v adb >/dev/null 2>&1; then

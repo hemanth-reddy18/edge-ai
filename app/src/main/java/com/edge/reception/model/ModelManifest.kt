@@ -10,7 +10,8 @@ data class ModelEntry(
     val sha256: String,
     val license: String,
     val attribution: String,
-    val languages: List<String>
+    val languages: List<String>,
+    val isOptional: Boolean = false
 )
 
 data class ModelManifest(

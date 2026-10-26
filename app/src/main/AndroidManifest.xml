@@ -7,10 +7,14 @@
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.READ_PHONE_NUMBERS" />
+    <uses-permission android:name="android.permission.ANSWER_PHONE_CALLS" />
+    <uses-permission android:name="android.permission.CALL_PHONE" />
     <uses-permission android:name="android.permission.MANAGE_OWN_CALLS" />
 
     <application
         android:allowBackup="true"
+        android:usesCleartextTraffic="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
@@ -19,6 +23,7 @@
 
         <activity
             android:name=".MainActivity"
+            android:launchMode="singleTask"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -27,6 +32,15 @@
             <!-- DIAL Action for RoleManager.ROLE_DIALER compliance -->
             <intent-filter>
                 <action android:name="android.intent.action.DIAL" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.DIAL" />
+                <data android:scheme="tel" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
                 <data android:scheme="tel" />
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
@@ -34,18 +48,23 @@
 
         <activity
             android:name=".ui.CallDetailActivity"
-            android:exported="false"
+            android:exported="true"
             android:label="Call Details" />
 
         <activity
             android:name=".ui.SettingsActivity"
-            android:exported="false"
+            android:exported="true"
             android:label="Settings" />
 
         <activity
             android:name=".ui.NoticesActivity"
-            android:exported="false"
+            android:exported="true"
             android:label="Open Source Notices" />
+
+        <activity
+            android:name=".ui.DialerActivity"
+            android:exported="true"
+            android:label="Edge Business Dialer" />
 
         <!-- InCallService for Telephony State & Auto-Answer -->
         <service
@@ -69,6 +88,35 @@
                 <action android:name="android.telecom.CallScreeningService" />
             </intent-filter>
         </service>
+
+        <!-- Test Audio Receiver for Dynamic On-Device TTS Validation -->
+        <receiver
+            android:name=".telephony.TestAudioReceiver"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="com.edge.reception.TEST_DYNAMIC_TTS" />
+            </intent-filter>
+        </receiver>
+
+        <!-- Voice Test Receiver for Local Two-Way Voice Loop over USB -->
+        <receiver
+            android:name=".telephony.VoiceTestReceiver"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="com.edge.reception.START_LOCAL_VOICE_TEST" />
+                <action android:name="com.edge.reception.END_LOCAL_VOICE_TEST" />
+            </intent-filter>
+        </receiver>
+
+        <!-- Carrier Call Receiver for Asterisk SIP / Real Telephony Calls -->
+        <receiver
+            android:name=".telephony.CarrierCallReceiver"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="com.edge.reception.START_CARRIER_CALL" />
+                <action android:name="com.edge.reception.END_CARRIER_CALL" />
+            </intent-filter>
+        </receiver>
 
     </application>
 

@@ -28,7 +28,7 @@ class LocalLoopAudioBridge : CallAudioBridge {
     override fun getBridgeType(): String = "Local Audio Loop / Microphone Test Bridge"
 }
 
-class VoipSipAudioBridge(private val sipGatewayHost: String) : CallAudioBridge {
+class VoipSipAudioBridge(private val sipGatewayHost: String, private val carrierBridge: CarrierCallBridge? = null) : CallAudioBridge {
     private var isStreaming = false
 
     override fun startCapture(onAudioData: (ShortArray) -> Unit) {
@@ -36,11 +36,12 @@ class VoipSipAudioBridge(private val sipGatewayHost: String) : CallAudioBridge {
     }
 
     override fun playAudio(pcmSamples: ShortArray) {
-        // RTP transmission to SIP/PSTN bridge
+        // Output routed through carrier media stream
     }
 
     override fun stop() {
         isStreaming = false
+        carrierBridge?.endCall()
     }
 
     override fun isTwoWayTelephonySupported(): Boolean = true

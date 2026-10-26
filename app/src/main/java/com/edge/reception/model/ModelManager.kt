@@ -36,7 +36,8 @@ class ModelManager(private val context: Context) {
                     sha256 = obj.getString("sha256"),
                     license = obj.getString("license"),
                     attribution = obj.getString("attribution"),
-                    languages = langs
+                    languages = langs,
+                    isOptional = obj.optBoolean("optional", false)
                 )
             )
         }
@@ -48,20 +49,21 @@ class ModelManager(private val context: Context) {
     }
 
     fun isModelReady(entry: ModelEntry): Boolean {
+        if (entry.isOptional) return true
         val file = getModelFile(entry.filename)
         return file.exists() && file.length() > 0
     }
 
     fun areAllModelsReady(): Boolean {
         val manifest = loadManifest()
-        return manifest.models.all { isModelReady(it) }
+        return manifest.models.filter { !it.isOptional }.all { isModelReady(it) }
     }
 
     fun getDownloadProgressPercent(): Int {
         val manifest = loadManifest()
         var totalExpected: Long = 0
         var totalCurrent: Long = 0
-        for (m in manifest.models) {
+        for (m in manifest.models.filter { !it.isOptional }) {
             totalExpected += m.sizeBytes
             val file = getModelFile(m.filename)
             if (file.exists()) {

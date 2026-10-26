@@ -13,5 +13,7 @@ data class BusinessProfileEntity(
     val openingGreeting: String = "Hello, you've reached Edge Realty. I'm the virtual receptionist. How may I help you today?",
     val autoAnswerDelaySeconds: Int = 3,
     val autoAnswerEnabled: Boolean = false,
-    val catalogJson: String = "{}"
+    val catalogJson: String = "{}",
+    val voicePersona: String = "SOUTH_INDIAN_FEMALE",
+    val scriptVersion: String = "1.0.0"
 )

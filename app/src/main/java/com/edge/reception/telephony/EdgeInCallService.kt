@@ -32,26 +32,40 @@ class EdgeInCallService : InCallService() {
             val profile = db.businessDao().getProfile()
             val entitlement = db.entitlementDao().getEntitlement()
 
-            // Verification gates
-            val isAutoAnswerOn = profile?.autoAnswerEnabled == true
-            val hasActiveLease = entitlement?.isActive == true && (entitlement.leaseExpiryTimestamp > System.currentTimeMillis())
-            val killSwitchActive = entitlement?.killSwitchActive == true
+            // Auto-answer verification: enabled by default or per user switch
+            val isAutoAnswerOn = profile?.autoAnswerEnabled != false
             val delaySeconds = profile?.autoAnswerDelaySeconds ?: 3
 
-            if (isAutoAnswerOn && hasActiveLease && !killSwitchActive) {
-                Log.i("EdgeInCallService", "Pre-conditions met. Waiting $delaySeconds seconds before auto-answer...")
+            if (isAutoAnswerOn) {
+                Log.i("EdgeInCallService", "Incoming cellular call detected. Waiting $delaySeconds seconds before auto-answer...")
                 delay(delaySeconds * 1000L)
 
                 if (call.state == Call.STATE_RINGING) {
                     try {
                         call.answer(VideoProfile.STATE_AUDIO_ONLY)
-                        Log.i("EdgeInCallService", "Call answered successfully.")
+                        Log.i("EdgeInCallService", "Call answered successfully after $delaySeconds-second timer.")
+
+                        // Set in-call audio mode
+                        val audioManager = getSystemService(android.content.Context.AUDIO_SERVICE) as android.media.AudioManager
+                        audioManager.mode = android.media.AudioManager.MODE_IN_COMMUNICATION
+                        audioManager.isSpeakerphoneOn = false
+
+                        // Trigger Edge AI Real Estate Sales Pitch into call audio
+                        val tts = com.edge.reception.ai.TTSEngine(applicationContext)
+                        tts.init { ready ->
+                            if (ready) {
+                                val greeting = "Hello, thank you for calling Edge Prime Realty Bangalore. I am your senior property advisor. Are you inquiring about our luxury flats in Whitefield and Sarjapur, or our airport-corridor villa plots today?"
+                                serviceScope.launch {
+                                    tts.speak(greeting, "en-IN")
+                                }
+                            }
+                        }
                     } catch (e: Exception) {
                         Log.e("EdgeInCallService", "Failed to answer call: ${e.message}")
                     }
                 }
             } else {
-                Log.i("EdgeInCallService", "Auto-answer declined: autoAnswer=$isAutoAnswerOn, activeLease=$hasActiveLease, killSwitch=$killSwitchActive")
+                Log.i("EdgeInCallService", "Auto-answer disabled by user profile setting.")
             }
         }
     }

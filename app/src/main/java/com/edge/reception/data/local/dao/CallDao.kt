@@ -12,25 +12,28 @@ interface CallDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertCall(call: CallEntity)
 
-    @Query("SELECT * FROM calls ORDER BY timestamp DESC")
+    @Query("SELECT * FROM calls WHERE isTestSession = 0 ORDER BY timestamp DESC")
     fun getAllCalls(): Flow<List<CallEntity>>
 
-    @Query("SELECT * FROM calls WHERE outcome = :outcome ORDER BY timestamp DESC")
+    @Query("SELECT * FROM calls WHERE isTestSession = 1 ORDER BY timestamp DESC")
+    fun getTestCalls(): Flow<List<CallEntity>>
+
+    @Query("SELECT * FROM calls WHERE isTestSession = 0 AND outcome = :outcome ORDER BY timestamp DESC")
     fun getCallsByOutcome(outcome: String): Flow<List<CallEntity>>
 
     @Query("SELECT * FROM calls WHERE id = :id LIMIT 1")
     suspend fun getCallById(id: String): CallEntity?
 
-    @Query("SELECT COUNT(*) FROM calls")
+    @Query("SELECT COUNT(*) FROM calls WHERE isTestSession = 0")
     fun getTotalCount(): Flow<Int>
 
-    @Query("SELECT COUNT(*) FROM calls WHERE outcome = 'LEAD'")
+    @Query("SELECT COUNT(*) FROM calls WHERE isTestSession = 0 AND outcome = 'LEAD'")
     fun getLeadCount(): Flow<Int>
 
-    @Query("SELECT COUNT(*) FROM calls WHERE outcome = 'FAIL'")
+    @Query("SELECT COUNT(*) FROM calls WHERE isTestSession = 0 AND outcome = 'FAIL'")
     fun getFailCount(): Flow<Int>
 
-    @Query("SELECT COUNT(*) FROM calls WHERE outcome = 'MISSED'")
+    @Query("SELECT COUNT(*) FROM calls WHERE isTestSession = 0 AND outcome = 'MISSED'")
     fun getMissedCount(): Flow<Int>
 
     @Query("DELETE FROM calls WHERE isDemo = 1")

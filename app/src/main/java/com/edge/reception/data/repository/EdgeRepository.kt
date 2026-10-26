@@ -46,14 +46,23 @@ class EdgeRepository(private val db: AppDatabase) {
         db.businessDao().saveProfile(current.copy(autoAnswerEnabled = enabled))
     }
 
-    suspend fun updateBusinessProfile(name: String, type: String, language: String, delay: Int) {
+    suspend fun updateBusinessProfile(
+        name: String,
+        type: String,
+        language: String,
+        delay: Int,
+        voicePersona: String = "SOUTH_INDIAN_FEMALE",
+        scriptVersion: String = "1.0.0"
+    ) {
         val current = db.businessDao().getProfile() ?: BusinessProfileEntity()
         db.businessDao().saveProfile(
             current.copy(
                 businessName = name,
                 businessType = type,
                 defaultLanguage = language,
-                autoAnswerDelaySeconds = delay
+                autoAnswerDelaySeconds = delay,
+                voicePersona = voicePersona,
+                scriptVersion = scriptVersion
             )
         )
     }

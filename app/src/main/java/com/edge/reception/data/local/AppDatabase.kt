@@ -4,6 +4,8 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import androidx.room.migration.Migration
+import androidx.sqlite.db.SupportSQLiteDatabase
 import com.edge.reception.data.local.dao.BusinessDao
 import com.edge.reception.data.local.dao.CallDao
 import com.edge.reception.data.local.dao.EntitlementDao
@@ -20,7 +22,7 @@ import com.edge.reception.data.local.entity.TranscriptTurnEntity
         BusinessProfileEntity::class,
         EntitlementEntity::class
     ],
-    version = 1,
+    version = 3,
     exportSchema = false
 )
 abstract class AppDatabase : RoomDatabase() {
@@ -33,13 +35,23 @@ abstract class AppDatabase : RoomDatabase() {
         @Volatile
         private var INSTANCE: AppDatabase? = null
 
+        val MIGRATION_2_3 = object : Migration(2, 3) {
+            override fun migrate(db: SupportSQLiteDatabase) {
+                db.execSQL("ALTER TABLE business_profile ADD COLUMN voicePersona TEXT NOT NULL DEFAULT 'SOUTH_INDIAN_FEMALE'")
+                db.execSQL("ALTER TABLE business_profile ADD COLUMN scriptVersion TEXT NOT NULL DEFAULT '1.0.0'")
+            }
+        }
+
         fun getInstance(context: Context): AppDatabase {
             return INSTANCE ?: synchronized(this) {
                 val instance = Room.databaseBuilder(
                     context.applicationContext,
                     AppDatabase::class.java,
                     "edge_reception.db"
-                ).fallbackToDestructiveMigration().build()
+                )
+                    .addMigrations(MIGRATION_2_3)
+                    .fallbackToDestructiveMigration()
+                    .build()
                 INSTANCE = instance
                 instance
             }
