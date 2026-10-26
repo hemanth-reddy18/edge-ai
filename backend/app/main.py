@@ -174,7 +174,7 @@ def init_db():
     """)
     c.execute("""
     CREATE TABLE IF NOT EXISTS calls (
-        call_id TEXT NOT NULL,
+        call_id TEXT PRIMARY KEY,
         client_id TEXT NOT NULL,
         caller_id TEXT,
         duration_seconds INTEGER,
@@ -183,10 +183,10 @@ def init_db():
         summary TEXT,
         timestamp INTEGER,
         is_test_session INTEGER DEFAULT 0,
-        PRIMARY KEY (call_id, client_id),
         FOREIGN KEY(client_id) REFERENCES clients(id)
     )
     """)
+    c.execute("CREATE UNIQUE INDEX IF NOT EXISTS idx_calls_call_id ON calls(call_id)")
     c.execute("""
     CREATE TABLE IF NOT EXISTS prompt_history (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
